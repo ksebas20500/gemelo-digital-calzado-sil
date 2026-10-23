@@ -1,0 +1,6 @@
+# Vision model (training and inference). Install on top of requirements.txt:
+#   uv venv --python 3.12 .venv && uv pip install -r requirements.txt -r requirements-vision.txt
+# Versions verified on 2026-10-23 (Python 3.12, CUDA 13 build of PyTorch).
+anomalib==2.7.0
+torch==2.14.1
+scikit-learn==1.9.1

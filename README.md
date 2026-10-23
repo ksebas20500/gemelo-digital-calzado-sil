@@ -15,4 +15,6 @@
 - [Guía del sistema](docs/guia_del_sistema.md): cómo funciona todo y cómo ejecutarlo.
 - [Contexto del proyecto](docs/contexto_del_proyecto.md): objetivos y cronograma.
 - [Plan de desarrollo](docs/plan_desarrollo.md): arquitectura, stack y fases.
-- Simulador 2D: abrir `simulador2d/index.html` en el navegador.
+- [Guía para la exposición](docs/guia_exposicion.md): la idea, el modelo matemático y el guion de la presentación.
+- Modelo de visión (PatchCore + tipo de defecto sobre MVTec AD *leather*): ver la [guía, sección 7](docs/guia_del_sistema.md#7-modelo-de-visión) y las métricas en `reports/`.
+- Interfaz web del gemelo (simulador 2D): `cd web && pnpm install && pnpm dev`. Detalles en la [guía](docs/guia_del_sistema.md#6-interfaz-web-simulador-2d).

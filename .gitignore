@@ -4,3 +4,13 @@ __pycache__/
 .pytest_cache/
 *.db
 .DS_Store
+
+# Vision: dataset, trained weights and Anomalib run outputs (reproducible from scripts)
+data/
+models/
+results/
+lightning_logs/
+runs/
+
+# Local agent tooling cache (skill registry), not project content
+.atl/

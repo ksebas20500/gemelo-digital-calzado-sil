@@ -3,14 +3,15 @@ import time
 
 from transitions import Machine
 
-from vision.detector import Detector, decode_png_b64
+from vision.detector import decode_png_b64, load_detector
 
 
 class InspectionController:
     states = ["espera", "captura", "inferencia", "decision"]
 
-    def __init__(self, detector: Detector | None = None):
-        self.detector = detector or Detector()
+    def __init__(self, detector=None):
+        # Default comes from the DETECTOR env var (see vision/detector.py).
+        self.detector = detector or load_detector()
         self._image = None
         self._result = None
         self.machine = Machine(model=self, states=self.states, initial="espera")

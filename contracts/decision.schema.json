@@ -7,8 +7,8 @@
     "pieza_id": {"type": "integer", "minimum": 0},
     "timestamp": {"type": "number"},
     "decision": {"enum": ["OK", "RECHAZO"]},
-    "label": {"type": "string"},
-    "score": {"type": "number", "minimum": 0, "maximum": 1},
+    "label": {"type": "string", "description": "\"ok\" = pieza buena; cualquier otro valor es el tipo de defecto (p. ej. mancha, pegado, corte, deformacion, perforacion)."},
+    "score": {"type": "number", "minimum": 0, "maximum": 1, "description": "Puntuación de defecto en [0, 1]: mayor = más probable que la pieza sea defectuosa. No es la confianza en la decisión."},
     "latencia_ms": {"type": "number", "minimum": 0}
   },
   "additionalProperties": false

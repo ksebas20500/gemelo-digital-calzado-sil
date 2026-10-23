@@ -1,0 +1,90 @@
+{
+  "images": 70,
+  "input": "256x256 RGB (same as the simulator)",
+  "device": "cuda",
+  "ok_vs_defect": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "false_rejections": 0,
+    "missed_defects": 0,
+    "good_pieces": 32,
+    "defective_pieces": 38
+  },
+  "recall_per_defect": {
+    "corte": 1.0,
+    "deformacion": 1.0,
+    "mancha": 1.0,
+    "pegado": 1.0,
+    "perforacion": 1.0
+  },
+  "type_accuracy_on_detected_defects": 0.7894736842105263,
+  "confusion_matrix": {
+    "labels": [
+      "ok",
+      "corte",
+      "deformacion",
+      "mancha",
+      "pegado",
+      "perforacion"
+    ],
+    "rows_true_cols_predicted": [
+      [
+        32,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        6,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        5,
+        0,
+        0,
+        2
+      ],
+      [
+        0,
+        0,
+        0,
+        8,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        8,
+        0
+      ],
+      [
+        0,
+        3,
+        1,
+        0,
+        0,
+        3
+      ]
+    ]
+  },
+  "latency_ms": {
+    "first_call": 294.76497100040433,
+    "median": 44.58407800029818,
+    "p95": 49.82576799993694,
+    "max": 155.78329999971174,
+    "target": 200,
+    "meets_target_p95": true
+  },
+  "throughput_piezas_por_min": 1345.771914350202
+}
