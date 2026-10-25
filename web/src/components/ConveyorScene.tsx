@@ -1,54 +1,58 @@
 import { useState } from "react"
 
-import { activeShoeId } from "../sim/simulation"
+import { BELT_SPEED, activeShoeId } from "../sim/simulation"
 import type { SimState } from "../sim/types"
-import { Icon } from "./Icon"
 import { Shoe } from "./Shoe"
 
 function InspectionStation({ active }: { active: boolean }) {
   return (
     <div className={`inspection-station ${active ? "is-active" : ""}`}>
       <div className="camera-head">
-        <Icon name="camera" className="size-4" />
         <span>Cámara</span>
       </div>
       <div className="scan-zone">
-        <span className="corner tl" />
-        <span className="corner tr" />
-        <span className="corner bl" />
-        <span className="corner br" />
-        {active && <span className="scan-beam" />}
       </div>
     </div>
   )
 }
 
-function RejectActuator({ active }: { active: boolean }) {
+/** The rod tip follows the piece being pushed, so it never lags behind it. */
+function RejectActuator({ state }: { state: SimState }) {
+  const target = state.shoes
+    .filter((shoe) => shoe.result === "RECHAZO" && shoe.x > 66)
+    .sort((a, b) => b.y - a.y)[0]
+  const tip = target ? Math.max(36, Math.min(88, target.y - 6)) : 28
   return (
-    <div className={`actuator ${active ? "is-active" : ""}`}>
-      <span>Actuador</span>
-      <div className="actuator-body">
-        <div className="actuator-arm" />
+    <>
+      <div className={`actuator ${target ? "is-active" : ""}`}>
+        <span className="actuator-label">Actuador</span>
+        <div className="actuator-body" />
       </div>
-    </div>
+      <div className="actuator-rod" style={{ height: `${tip - 28}%` }}>
+        <i className="actuator-head" />
+      </div>
+    </>
   )
 }
 
-export function ConveyorScene({ state }: { state: SimState }) {
+export function ConveyorScene({
+  state,
+  speed = 1,
+}: {
+  state: SimState
+  speed?: number
+}) {
   const [expanded, setExpanded] = useState(false)
   const activeId = activeShoeId(state)
   const processing = state.shoes.some(
     (shoe) => shoe.result === null && shoe.x >= 42,
-  )
-  const rejecting = state.shoes.some(
-    (shoe) => shoe.result === "RECHAZO" && shoe.x > 70 && shoe.x < 83,
   )
   return (
     <div
       className={`simulator-container ${expanded ? "simulator-expanded" : ""}`}
     >
       <div className="viewport-toolbar">
-        <span>
+        <span className="viewport-status">
           {activeId !== undefined
             ? `Inspeccionando pieza #${activeId}`
             : "Esperando siguiente pieza"}
@@ -68,17 +72,12 @@ export function ConveyorScene({ state }: { state: SimState }) {
       >
         <div
           className={`scene-wrap ${state.paused ? "simulation-paused" : ""}`}
+          style={
+            {
+              "--belt-dur": `${(5 * 0.82) / (BELT_SPEED * speed)}s`,
+            } as React.CSSProperties
+          }
         >
-          <div className="simulator-hud">
-            <span className="simulator-mode">
-              <i />
-              {state.mode === "mqtt" ? "MQTT EN VIVO" : "SIMULACIÓN SIL"}
-            </span>
-            <span>{state.paused ? "PAUSADA" : "EN EJECUCIÓN"}</span>
-            <span>VISTA SUPERIOR · 2D</span>
-          </div>
-          <div className="axis axis-x">X+</div>
-          <div className="axis axis-y">Y+</div>
           <div className="scene-label entry">Entrada</div>
           <div className="scene-label exit">Salida</div>
           <div className="roller roller-entry" />
@@ -89,7 +88,6 @@ export function ConveyorScene({ state }: { state: SimState }) {
           <div className="safety-line safety-bottom" />
           <div className={`belt ${state.paused ? "paused" : ""}`}>
             <div className="belt-lines" />
-            <div className="belt-centerline" />
           </div>
           <div className="photo-sensor sensor-entry">
             <i />
@@ -100,7 +98,7 @@ export function ConveyorScene({ state }: { state: SimState }) {
             S3
           </div>
           <InspectionStation active={processing} />
-          <RejectActuator active={rejecting} />
+          <RejectActuator state={state} />
           {state.shoes.map((shoe) => (
             <Shoe key={shoe.id} shoe={shoe} />
           ))}
@@ -115,14 +113,6 @@ export function ConveyorScene({ state }: { state: SimState }) {
               <span>OK</span>
               <strong>{String(state.binOk).padStart(2, "0")}</strong>
             </div>
-          </div>
-          <div className="scene-legend">
-            <span>
-              <i className="dot dot-cyan" /> Visión activa
-            </span>
-            <span>
-              <i className="dot dot-muted" /> Flujo de pieza
-            </span>
           </div>
         </div>
       </div>

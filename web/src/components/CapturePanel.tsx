@@ -79,7 +79,7 @@ export function CapturePanel({
   const decision = event?.result ?? "ESPERA"
   const predicted = event ? decisionMessage(event).label : null
   return (
-    <Panel title="Última captura" eyebrow="VISIÓN ARTIFICIAL">
+    <Panel title="Última captura">
       <p className="capture-context">
         {activeId !== undefined
           ? `En cámara: pieza #${activeId} · procesando`

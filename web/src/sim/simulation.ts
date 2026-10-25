@@ -40,6 +40,8 @@ export const phaseDurations = { Captura: 400, Inferencia: 700, Decisión: 400 }
 export const LOSS_PROBABILITY = 0.15
 /** MQTT mode: a capture with no decision after this long counts as lost. */
 export const DECISION_TIMEOUT_MS = 5000
+/** Belt speed in % of the scene width per second at 1x. */
+export const BELT_SPEED = 15
 /** Horizontal position (%) of the camera on the belt. */
 const CAMERA_X = 44
 
@@ -214,14 +216,14 @@ export function reducer(state: SimState, action: Action): SimState {
           (other) => other.id !== shoe.id && other.y === 50 && other.x > shoe.x,
         )
         .sort((a, b) => a.x - b.x)[0]
-      const nextX = shoe.x + (scaledDt / 1000) * 10.5
+      const nextX = shoe.x + (scaledDt / 1000) * BELT_SPEED
       shoe.x = shoe.result
         ? nextX
         : Math.min(nextX, 44, ahead ? ahead.x - 12 : 44)
     }
     if (shoe.result === "RECHAZO" && shoe.x > 73) {
       shoe.x = 74
-      shoe.y = Math.min(92, shoe.y + (scaledDt / 1000) * 32)
+      shoe.y = Math.min(92, shoe.y + (scaledDt / 1000) * 70)
     }
   }
 

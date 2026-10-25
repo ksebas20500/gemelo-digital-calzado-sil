@@ -12,7 +12,7 @@ export function EventLog({ events }: { events: EventItem[] }) {
       ? events
       : events.filter((event) => event.result === filter)
   return (
-    <Panel title="Registro" eyebrow="EVENTOS RECIENTES">
+    <Panel title="Registro">
       <div className="filter-row" aria-label="Filtrar registro">
         {filters.map((item) => (
           <button

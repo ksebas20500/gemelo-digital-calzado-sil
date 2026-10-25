@@ -71,7 +71,7 @@ export function KpiGrid({ state }: { state: SimState }) {
     ["Throughput", `${throughput.toFixed(1)} p/min`],
   ]
   return (
-    <Panel title="Gemelo digital" eyebrow="TELEMETRÍA EN VIVO">
+    <Panel title="Gemelo digital">
       <div className="kpi-grid">
         {kpis.map(([label, value], i) => (
           <div className={`kpi-card kpi-${i}`} key={label}>

@@ -28,7 +28,7 @@ function App() {
     scenario: "normal",
     defectType: "mancha",
   })
-  const [light, setLight] = useState(false)
+  const [light, setLight] = useState(true)
   const [clock, setClock] = useState(new Date())
 
   useEffect(() => {
@@ -57,17 +57,11 @@ function App() {
   return (
     <div className={light ? "app light" : "app"}>
       <header className="topbar">
-        <div className="brand-mark">
-          <Icon name="activity" className="size-5" />
-        </div>
         <div className="title-block">
           <h1>
-            Gemelo Digital <span>· Línea de calzado</span>
+            Gemelo digital <span>· Inspección de calzado</span>
           </h1>
-          <p>
-            Vista superior de la banda con inspección por visión artificial
-            (SIL)
-          </p>
+          <p>Línea 01 · Software-in-the-Loop con visión artificial</p>
         </div>
         <div className="topbar-meta">
           <div className="mode-switch" role="group" aria-label="Fuente de datos">
@@ -131,8 +125,8 @@ function App() {
         </div>
         <div className="dashboard-grid">
           <div className="primary-column">
-            <Panel title="Escena de la banda" eyebrow="PLANTA · LÍNEA 01">
-              <ConveyorScene state={state} />
+            <Panel title="Escena de la banda">
+              <ConveyorScene state={state} speed={live ? 1 : settings.speed} />
               <StateStepper state={state} />
             </Panel>
             <KpiGrid state={state} />
@@ -155,7 +149,7 @@ function App() {
         </div>
       </main>
       <footer>
-        <span>GDT-SIL / PROTOTIPO DE INVESTIGACIÓN · INDUSTRIA 4.0</span>
+        <span>Gemelo digital SIL · Prototipo de investigación · Industria 4.0</span>
         <p>
           Flujo: espera → captura → inferencia → decisión · Mensajes según{" "}
           <code>contracts/decision.schema.json</code>

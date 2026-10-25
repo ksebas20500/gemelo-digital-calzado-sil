@@ -58,7 +58,7 @@ export function ControlPanel({
 }) {
   const live = state.mode === "mqtt"
   return (
-    <Panel title="Control" eyebrow={live ? "MQTT EN VIVO" : "SIMULACIÓN SIL"}>
+    <Panel title="Control">
       {live && (
         <p className="live-note">
           En modo MQTT la línea la mueve <code>simulator/</code> (variables{" "}
