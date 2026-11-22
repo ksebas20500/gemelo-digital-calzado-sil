@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Póster Gemelo Digital Calzado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&display=block" rel="stylesheet">
+<style>
+  :root {
+    --navy: #003366;
+    --red: #ad3333;
+    --yellow: #dcc450;
+    --ink: #111;
+    --soft: #e8ecf1;
+  }
+  @page { size: 297mm 420mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; }
+  body { font-family: Arimo, Arial, "Liberation Sans", sans-serif; color: var(--ink); }
+
+  .page {
+    position: relative; width: 297mm; height: 420mm; overflow: hidden;
+    padding: 0 14mm; background: #fff;
+  }
+
+  /* Corner bands, as in the template */
+  .band-top, .band-bottom { position: absolute; left: 0; right: 0; height: 4mm; }
+  .band-top { top: 0; background: linear-gradient(90deg, var(--red) 0 46%, var(--yellow) 54% 100%); }
+  .band-bottom { bottom: 0; height: 9mm; background: linear-gradient(90deg, var(--red) 0 42%, var(--yellow) 58% 100%);
+    clip-path: polygon(0 35%, 30% 0, 70% 0, 100% 40%, 100% 100%, 0 100%); }
+
+  .logos { display: flex; justify-content: center; align-items: center; gap: 6mm; padding-top: 7mm; height: 25mm; }
+  .logos img { height: 14mm; width: auto; object-fit: contain; }
+  .logos img.wide { height: 11.5mm; }
+  .logos img.round { width: 14mm; height: 14mm; border-radius: 50%; object-fit: cover; }
+
+  .fair { position: relative; display: flex; justify-content: center; align-items: center; height: 17mm; margin-top: 1mm; }
+  .fair h1 { margin: 0; text-align: center; font-family: Montserrat, "Arial Black", Arial, sans-serif; font-weight: 900;
+    color: var(--navy); font-size: 19pt; line-height: 1.05; letter-spacing: .2pt; }
+  .fair .chev { position: absolute; left: 0; top: 50%; transform: translateY(-50%); height: 11mm; }
+  .fair .slash { position: absolute; right: 50mm; top: 0; height: 6mm; }
+
+  .bar { background: var(--navy); color: #fff; text-align: center; font-family: Montserrat, "Arial Black", Arial, sans-serif;
+    font-weight: 900; font-size: 15.5pt; padding: 1.1mm 4mm; margin: 2.2mm 0 1.3mm; letter-spacing: .3pt; }
+  .bar.title { font-size: 13.6pt; line-height: 1.2; padding: 1.8mm 5mm; margin-top: 1.5mm; }
+
+  .authors { text-align: center; font-weight: 700; font-size: 10pt; line-height: 1.28; }
+  .authors .lbl { display: block; }
+
+  p, li { font-weight: 700; font-size: 10.1pt; line-height: 1.28; margin: 0; }
+  p.just { text-align: justify; }
+  ul { margin: 0; padding-left: 5mm; }
+  li { margin-bottom: .7mm; }
+  li::marker { color: var(--navy); }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; column-gap: 8mm; }
+  .col > .bar { margin-top: 2.2mm; }
+
+  .formula { font-family: "Times New Roman", "Liberation Serif", serif; font-style: italic; font-weight: 400;
+    font-size: 12pt; text-align: center; margin: 1.6mm 0; background: var(--soft); padding: 1.4mm 2mm; border-left: 1.2mm solid var(--navy); }
+  .formula sub { font-size: 8pt; }
+  .formula .up { font-style: normal; }
+  .muted { font-weight: 400; font-size: 8.6pt; color: #333; }
+
+  /* Architecture diagram */
+  .arch { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.3mm; align-items: stretch; margin-top: 1mm; }
+  .node { border: .5mm solid var(--navy); border-radius: 1.4mm; padding: 1.4mm 1mm; text-align: center; background: #fff; position: relative; }
+  .node b { display: block; color: var(--navy); font-size: 8.6pt; line-height: 1.12; }
+  .node span { display: block; font-size: 7.2pt; line-height: 1.15; margin-top: .6mm; font-weight: 400; }
+  .node.mid { background: var(--navy); }
+  .node.mid b, .node.mid span { color: #fff; }
+  .node:not(:last-child)::after { content: "▶"; position: absolute; right: -2.3mm; top: 50%; transform: translateY(-50%);
+    color: var(--red); font-size: 7pt; }
+
+  .stack { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm 4mm; margin-top: 1.4mm; }
+  .stack h3 { margin: 0 0 .6mm; font-size: 10.4pt; }
+
+  /* Heatmaps */
+  .hm { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm; margin-top: 1.4mm; }
+  .hm figure { margin: 0; }
+  .hm img { width: 100%; height: 23mm; object-fit: cover; display: block; border-radius: .8mm; }
+  .hm figcaption { font-size: 8pt; font-weight: 700; text-align: center; margin-top: .4mm; }
+  .hm .note { grid-column: 1 / -1; }
+
+  /* Results */
+  .shot { width: 100%; display: block; border: .4mm solid #c8d0da; border-radius: 1mm; margin-top: 1.4mm; }
+  .kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6mm; margin-top: 2mm; }
+  .kpi { background: var(--soft); border-top: 1.1mm solid var(--navy); padding: 2mm 1mm 1.8mm; text-align: center; }
+  .kpi.red { border-top-color: var(--red); }
+  .kpi strong { display: block; font-family: Montserrat, "Arial Black", Arial, sans-serif; font-weight: 900; color: var(--navy);
+    font-size: 14pt; line-height: 1.05; }
+  .kpi span { display: block; font-size: 7.4pt; line-height: 1.15; font-weight: 700; margin-top: .5mm; }
+
+  .refs p { font-size: 8pt; line-height: 1.25; font-weight: 700; text-align: justify; }
+  .refs i { font-weight: 700; }
+
+  .footer { position: absolute; left: 0; right: 0; bottom: 9.5mm; display: flex; justify-content: center; align-items: center; gap: 4mm; }
+  .footer img { height: 10mm; width: auto; }
+  .footer .chev { position: absolute; right: 12mm; height: 7mm; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="band-top"></div>
+
+  <div class="logos">
+    <img src="assets/acreditacion.png" alt="Acreditación institucional en alta calidad">
+    <img src="assets/equaa.png" alt="Acreditación internacional EQUAA">
+    <img src="assets/ingenierias.png" alt="Facultad de Ingenierías">
+    <img src="assets/unipamplona.png" alt="Universidad de Pamplona">
+    <img class="wide" src="assets/electrica.png" alt="Ingeniería Eléctrica">
+    <img class="wide" src="assets/electronica.png" alt="Ingeniería Electrónica">
+    <img src="assets/telecom.png" alt="Ingeniería en Telecomunicaciones">
+    <img class="round" src="assets/sistemas.png" alt="Ingeniería de Sistemas">
+  </div>
+
+  <div class="fair">
+    <img class="chev" src="assets/chevrons.png" alt="">
+    <h1>FERIA DE PROYECTOS<br>DEPARTAMENTO EEST</h1>
+    <img class="slash" src="assets/slashes.png" alt="">
+  </div>
+
+  <div class="bar title">GEMELO DIGITAL MEDIANTE SOFTWARE-IN-THE-LOOP (SIL) Y VISIÓN ARTIFICIAL PARA LA DETECCIÓN DE DEFECTOS EN LA MANUFACTURA DE CALZADO · INDUSTRIA 4.0</div>
+
+  <div class="authors">
+    <span class="lbl">Autores:</span>
+    Yenderson Josué Rangel Martínez, Kevin Sebastian Medina Nava, Cristian Julian Camargo García.<br>
+    Universidad de Pamplona, Facultad de Ingenierías y Arquitecturas, Ingeniería de Sistemas · Sede Villa del Rosario.<br>
+    Tutora: Sandra Maigualida Aranguren De Tarantino · Grupo A&amp;C · Semillero SIDDFAI.
+  </div>
+
+  <div class="bar">INTRODUCCIÓN</div>
+  <p class="just">En la manufactura de calzado, la inspección de calidad del cuero se hace a ojo: es lenta, subjetiva y se degrada con la fatiga del operario. Este proyecto construye un prototipo de <u>gemelo digital</u> de una estación de inspección, probado con la metodología <u>Software-in-the-Loop (SIL)</u>: una planta virtual envía la foto de cada pieza, un modelo de visión artificial decide si tiene defecto y de qué tipo, y el gemelo refleja en tiempo real cada decisión. Todo se valida sin hardware físico, en el marco de la Industria 4.0.</p>
+
+  <div class="cols">
+    <div class="col">
+      <div class="bar">MARCO TEÓRICO</div>
+      <p class="just">Un <u>gemelo digital</u> es una réplica virtual que refleja el estado de un sistema físico. En <u>SIL</u> el software de control es el real y la planta es simulada. Para detectar defectos se usa <u>PatchCore</u>, un modelo de detección de anomalías que aprende <u>solo de piezas buenas</u>: guarda una memoria <i>M</i> de parches normales y puntúa cada parche nuevo por su distancia al más parecido.</p>
+      <div class="formula">s(p) = <span class="up">min</span><sub>m ∈ M</sub> ‖ φ(p) − m ‖<sub>2</sub> &nbsp;&nbsp;&nbsp;&nbsp; <span class="up">RECHAZO si</span> S(x) ≥ t</div>
+      <p class="just">El umbral <i>t</i> se calibra maximizando el índice de Youden <i>J = TPR − FPR</i>. Un clasificador (ResNet-18 + regresión logística) asigna el tipo de defecto.</p>
+    </div>
+    <div class="col">
+      <div class="bar">ANÁLISIS Y DISCUSIÓN</div>
+      <ul>
+        <li>Aprender lo normal evita etiquetar miles de defectos: el modelo detecta incluso defectos que nunca vio.</li>
+        <li>Los módulos solo intercambian mensajes MQTT con contratos JSON: se cambia el modelo sin tocar la planta ni el gemelo.</li>
+        <li>Separar piezas buenas de defectuosas es muy confiable; identificar el <u>tipo</u> es más difícil (perforación vs. deformación).</li>
+        <li>Limitaciones: se usan imágenes de cuero (MVTec AD), no de zapatos completos; el conjunto reservado es pequeño y no hay datos públicos de costura.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div class="col">
+      <div class="bar">METODOLOGÍA</div>
+      <div class="arch">
+        <div class="node"><b>Planta virtual</b><span>banda + cámara (SimPy)</span></div>
+        <div class="node mid"><b>MQTT</b><span>broker Mosquitto</span></div>
+        <div class="node"><b>Controlador SIL</b><span>máquina de estados</span></div>
+        <div class="node mid"><b>Visión</b><span>PatchCore + tipo</span></div>
+        <div class="node"><b>Gemelo</b><span>SQLite + web en vivo</span></div>
+      </div>
+      <div class="stack">
+        <div>
+          <h3>Lenguajes y librerías:</h3>
+          <ul>
+            <li>Python 3.12, SimPy, paho-mqtt</li>
+            <li>PyTorch, Anomalib, scikit-learn</li>
+            <li>React + TypeScript (Vite)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Entornos y datos:</h3>
+          <ul>
+            <li>Docker (Mosquitto), GPU RTX 4050</li>
+            <li>Dataset MVTec AD (cuero)</li>
+            <li>Agentes de IA generativa, con auditoría</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="bar">GRÁFICOS Y VISUALIZACIONES</div>
+      <div class="hm">
+        <figure><img src="assets/hm_corte.png" alt="Corte y su mapa de calor"><figcaption>Corte</figcaption></figure>
+        <figure><img src="assets/hm_pegado.png" alt="Pegado y su mapa de calor"><figcaption>Pegado</figcaption></figure>
+        <figure><img src="assets/hm_perforacion.png" alt="Perforación y su mapa de calor"><figcaption>Perforación</figcaption></figure>
+        <figure><img src="assets/hm_deformacion.png" alt="Deformación y su mapa de calor"><figcaption>Deformación</figcaption></figure>
+        <p class="note muted">Cada par: pieza de cuero real y el mapa de calor de PatchCore, que ubica el defecto sin haber visto defectos al entrenar.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bar">RESULTADOS</div>
+  <div class="cols">
+    <div class="col">
+      <img class="shot" src="assets/interfaz.png" alt="Interfaz web del gemelo digital: banda, cámara, actuador y última decisión">
+      <p class="muted" style="margin-top:.8mm">Interfaz del gemelo: la banda, la cámara, el actuador de rechazo y la última decisión en tiempo real.</p>
+    </div>
+    <div class="col">
+      <div class="kpis">
+        <div class="kpi"><strong>1,00</strong><span>AUROC imagen</span></div>
+        <div class="kpi"><strong>0,99</strong><span>AUROC píxel (ubicación)</span></div>
+        <div class="kpi red"><strong>0</strong><span>piezas buenas rechazadas</span></div>
+        <div class="kpi red"><strong>70/70</strong><span>piezas bien separadas</span></div>
+        <div class="kpi"><strong>79 %</strong><span>tipo de defecto correcto</span></div>
+        <div class="kpi"><strong>50 ms</strong><span>latencia p95 (meta &lt; 200 ms)</span></div>
+        <div class="kpi"><strong>34/34</strong><span>defectos atrapados en SIL</span></div>
+        <div class="kpi"><strong>100</strong><span>piezas, 0 mensajes perdidos</span></div>
+      </div>
+      <p class="muted" style="margin-top:1.6mm">Las métricas del modelo son sobre imágenes reservadas que el modelo no vio al entrenar (32 buenas, 38 defectuosas). La prueba SIL de punta a punta envió 100 piezas por MQTT y se auditó contra la verdad del simulador.</p>
+    </div>
+  </div>
+
+  <div class="bar">CONCLUSIONES Y RECOMENDACIONES</div>
+  <ul>
+    <li>El enfoque SIL permitió construir y validar el control de calidad completo sin hardware físico.</li>
+    <li>Aprendiendo solo de piezas buenas, el modelo atrapó todos los defectos sin rechazar piezas buenas, cuatro veces más rápido que la meta.</li>
+    <li>Siguientes pasos: entrenar con fotos de calzado real e incluir costura; conectar una cámara física (Hardware-in-the-Loop); extender el gemelo a toda la línea de producción.</li>
+  </ul>
+
+  <div class="bar">REFERENCIAS</div>
+  <div class="refs">
+    <p>[1] K. Roth, L. Pemula, J. Zepeda, B. Schölkopf, T. Brox y P. Gehler, "Towards Total Recall in Industrial Anomaly Detection," en <i>Proc. IEEE/CVF CVPR</i>, 2022, pp. 14318–14328.</p>
+    <p>[2] P. Bergmann, M. Fauser, D. Sattlegger y C. Steger, "MVTec AD — A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection," en <i>Proc. IEEE/CVF CVPR</i>, 2019, pp. 9592–9600.</p>
+    <p>[3] S. Akcay, D. Ameln, A. Vaidya, B. Lakshmanan, N. Ahuja y U. Genc, "Anomalib: A Deep Learning Library for Anomaly Detection," en <i>Proc. IEEE ICIP</i>, 2022, pp. 1706–1710.</p>
+    <p>[4] F. Tao, H. Zhang, A. Liu y A. Y. C. Nee, "Digital Twin in Industry: State-of-the-Art," <i>IEEE Trans. Ind. Informat.</i>, vol. 15, no. 4, pp. 2405–2415, 2019.</p>
+  </div>
+
+  <div class="footer">
+    <img src="assets/ieee_pes.png" alt="IEEE PES">
+    <img src="assets/ieee_ias.png" alt="IEEE IAS">
+    <img src="assets/ieee_rama.png" alt="Rama Estudiantil IEEE Unipamplona">
+    <img class="chev" src="assets/chevrons.png" alt="">
+  </div>
+  <div class="band-bottom"></div>
+</div>
+</body>
+</html>
