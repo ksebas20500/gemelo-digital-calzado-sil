@@ -8,7 +8,7 @@
 
 **Docente encargado:** Jesús Enrique Durán Villamizar
 
-**Línea de investigación:** Automatización · **Grupo:** Automatización y Control (A & C) · **Semillero:** GIIDAC · **Facultad / Sede:** Ingenierías y Arquitecturas / Villa del Rosario
+**Línea de investigación:** Automatización · **Semillero:** GIIDAC · **Facultad / Sede:** Ingenierías y Arquitecturas / Villa del Rosario
 
 ## Documentación
 

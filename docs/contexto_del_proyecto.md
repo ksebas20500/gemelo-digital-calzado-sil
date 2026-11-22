@@ -7,7 +7,6 @@
 
 ## Información General
 * **Línea de Investigación:** Automatización
-* **Grupo de Investigación:** Automatización y Control (A & C)
 * **Semillero:** GIIDAC
 * **Facultad / Sede:** Ingenierías y Arquitecturas / Villa del Rosario
 * **Duración:** 3 meses
