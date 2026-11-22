@@ -6,9 +6,9 @@
 - Kevin Sebastian Medina Nava (Ingeniería de Sistemas)
 - Cristian Julian Camargo García (Ingeniería de Sistemas)
 
-**Tutora:** Sandra Maigualida Aranguren De Tarantino
+**Docente encargado:** Jesús Enrique Durán Villamizar
 
-**Línea de investigación:** Automatización · **Grupo:** Automatización y Control (A & C) · **Semillero:** SIDDFAI · **Facultad / Sede:** Ingenierías y Arquitecturas / Villa del Rosario
+**Línea de investigación:** Automatización · **Grupo:** Automatización y Control (A & C) · **Semillero:** GIIDAC · **Facultad / Sede:** Ingenierías y Arquitecturas / Villa del Rosario
 
 ## Documentación
 

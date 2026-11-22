@@ -8,10 +8,10 @@
 ## Información General
 * **Línea de Investigación:** Automatización
 * **Grupo de Investigación:** Automatización y Control (A & C)
-* **Semillero:** Detección y Diagnóstico de Fallos en Sistemas de Automatización Industrial (SIDDFAI)
+* **Semillero:** GIIDAC
 * **Facultad / Sede:** Ingenierías y Arquitecturas / Villa del Rosario
 * **Duración:** 3 meses
-* **Tutor:** Sandra Maigualida Aranguren De Tarantino
+* **Docente encargado:** Jesús Enrique Durán Villamizar
 * **Estudiantes Participantes:** 
   * Yenderson Josué Rangel Martínez (Ingeniería de Sistemas)
   * Kevin Sebastian Medina Nava (Ingeniería de Sistemas)
