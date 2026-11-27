@@ -40,7 +40,7 @@ Después, otro modelo pequeño, una ResNet-18 con regresión logística, mira la
 
 ---
 
-## 3:30 – 5:00 · Metodología
+## 3:30 – 5:00 · Arquitectura
 
 **Expositor:** _por asignar_ · *recorrer el diagrama de izquierda a derecha*
 
